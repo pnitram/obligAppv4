@@ -1,0 +1,45 @@
+#regklasseh2, form {
+	padding: 1em;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  padding-bottom: 5px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
+}
+#melding {
+	height: 100px;
+}
+#visdataliste {
+	padding-top: 14px; 
+}
+
+#startinfo {
+	padding: 1em;
+	margin-bottom: 2em;
+}
+.endreKlasseSubmit {
+	margin-left: 5px;
+}
+.notbold {
+	font-weight: normal;
+}
+.flyttAlert {
+	margin-top: 5em;
+}
+
+.justerLegend {
+	padding-top: 14px; 
+}
