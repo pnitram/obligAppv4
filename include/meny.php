@@ -6,9 +6,9 @@
 <ul class="nav nav-pills nav-stacked">
 	<li><a href="./">Hjem</a></li>
 	<li><a href="./registrere-klasse.php">Registrere ny klasse</a></li>
-	<li><a href="./registrere-student.php">Registrere ny student</a></li>
+	<li><a href="./registrere-student.php">Registrere ny student</a><ul></ul></li>
 	<li><a href="./last-opp-bilde.php">Last opp bilde</a></li>
-	<li><a href="./vis-bilder.php">Vis bilder</a></li>
+	<li><a href="./vis-bilder.php">Vis alle bilder</a></li>
 	<li><a href="./vis-data-registrert.php">Vis registrert data</a></li>
 	<li><a href="./endre-data.php">Endre registrert data</a></li>
 	<li><a href="./slett-data.php">Slett data fra tabell</a></li>

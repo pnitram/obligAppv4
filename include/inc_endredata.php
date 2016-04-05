@@ -33,7 +33,7 @@ if ($tabell == "klasse") {
 
 }
 
-else {
+elseif ($tabell == "student") {
 	print("<script>$('option[value=student]').prop('selected', true);</script>");
 	print("<form class='form' role='form' method='post' action='' id='endreStudent' name='endreStudent' onSubmit='return bekreft()'/>");
 	print("<fieldset>");
@@ -50,6 +50,39 @@ else {
 	print("</div>");
 	print("</fieldset>");
 	print("</form>");
+}
+
+elseif ($tabell == "bilde") {
+
+	print("<form class='form' role='form' method='post' action='' id='endreBilde' name='endreBilde' onSubmit='return bekreft()'/>");
+	print("<fieldset>");
+	print("<legend>Velg bilde som skal endres</legend>");
+	print("<div class='form-group'>");
+  print("<table class='table table-striped table-responsive'>");
+  print("<thead>");
+  print("<tr>");
+  print("<th></th>");
+  print("<th>Bildenr</th>");
+  print("<th>Opplastingsdato</th>");
+  print("<th>Filnavn</th>");
+  print("<th>Beskrivelse</th>");
+  print("<th></th>");
+  print("</tr>");
+  print("</thead>");
+  print("<tbody>");
+
+
+	include("./include/listeboks-bilde.php");
+	print("</tbody>");
+	print("</table>");
+	print("</div>");
+	print("<div class='form-group'>");
+	print("<input type='submit' class='btn btn-info' value='Fortsett' id='fortsettKlasse' name='fortsettKlasse'/>");
+	print("</div>");
+	print("</fieldset>");
+	print("</form>");
+
+
 }
 
 }
