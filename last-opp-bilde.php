@@ -41,10 +41,10 @@
                     	});
                     </script>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="bildenr">Bilde nummer:</label>
                         <input type="text" class="form-control" id="bildenr" name="bildenr" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRK(this)" onmouseout="musUt(this)" required/>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="beskrivelse">Beskrivelse:</label>

@@ -21,7 +21,7 @@
 
 <!-- VIS ALLE BILDER -->
 
-<div class="col-md-7">
+<div class="col-md-9">
 
 <!-- INKLUDERER PHP OG DB FEILMELDINGER  -->
 <?php include "./include/inc_vis-bilder.php"; ?>

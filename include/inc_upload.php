@@ -5,7 +5,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 @$fortsett=$_POST["fortsett"];
 
 if ($fortsett) {
-$bildenr=$_POST["bildenr"];
+/*$bildenr=$_POST["bildenr"];*/
 $beskrivelse=$_POST["beskrivelse"];
 $filnavn=$_FILES["fil"]["name"];
 $filtype=$_FILES["fil"]["type"];
@@ -13,7 +13,7 @@ $filstorrelse=$_FILES["fil"]["size"];
 $tmpnavn=$_FILES["fil"]["tmp_name"];
 $uploadDate=date("d-m-Y");
 
-if (!$bildenr || !$beskrivelse || !$filnavn) {
+if (/*!$bildenr || */!$beskrivelse || !$filnavn) {
 	print("Alle felt på fylles ut");
 }
 else {
@@ -25,7 +25,7 @@ else {
 		print("Filstørrelsen må være under 10 MB");
 	}
 
-	else {
+	/*else {
 		include ("./include/db-tilkobling.php");
 
 		$sqlSetning="SELECT * FROM bilde WHERE bildenr='$bildenr';";
@@ -45,6 +45,22 @@ else {
 			print("bilde er nå registrert");
 
 		}
+	}*/
+
+	else {
+		include ("./include/db-tilkobling.php");
+			$nyttnavn="/var/www/html/MySchoolProjects/obligAppv4/bilder/" .$filnavn;
+			move_uploaded_file($tmpnavn, $nyttnavn) or die("kunne ikke opprette bilde");
+
+			$sqlSetning="INSERT INTO bilde (opplastingsdato,filnavn,beskrivelse) VALUES ('$uploadDate', '$filnavn', '$beskrivelse');";
+			if (mysqli_query($db,$sqlSetning)) {
+				$siste_bilde_nr = mysqli_insert_id($db);
+				print ("Siste registrerte bildenr er: ");
+				printf("%03s\n", $siste_bilde_nr);
+			}
+			else {
+				print("Error: " . $sqlSetning . "<br>" . mysqli_error($db));
+			}
 	}
 
 }

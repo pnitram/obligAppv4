@@ -29,6 +29,7 @@
 <select class="form-control" id="VelgTabell" name="VelgTabell" required/>
 <option value="klasse">Klasse</option>
 <option value="student">Student</option>
+<option value="bilde">Vis alle bilder</option>
 </select>
 </div>
 <div class="form-group">
@@ -40,7 +41,7 @@
 </div>
 
 
-<div class="col-md-5">
+<div class="col-md-9 pull-down">
 
 <!-- INKLUDERER PHP SKJEMA OG DB FEILMELDINGER  -->
 <?php include "./include/inc_vis-data.php"; ?>

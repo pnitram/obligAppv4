@@ -13,7 +13,7 @@ $antallRader=mysqli_num_rows($sqlResultat);
 
 
 if ($tabell == "klasse") {
-
+	print("<script>$('option[value=klasse]').prop('selected', true);</script>");
 	print("<form class='form' role='form' method='post' action='' id='endreKlasse' name='endreKlasse' onSubmit='return bekreft()'/>");
 	print("<fieldset>");
 	print("<legend>Klasse som skal endres</legend>");
@@ -56,15 +56,13 @@ elseif ($tabell == "bilde") {
 
 	print("<form class='form' role='form' method='post' action='' id='endreBilde' name='endreBilde' onSubmit='return bekreft()'/>");
 	print("<fieldset>");
-	print("<legend>Velg bilde som skal endres</legend>");
+	print("<legend>Velg bilde du vil endre</legend>");
 	print("<div class='form-group'>");
   print("<table class='table table-striped table-responsive'>");
   print("<thead>");
   print("<tr>");
   print("<th></th>");
   print("<th>Bildenr</th>");
-  print("<th>Opplastingsdato</th>");
-  print("<th>Filnavn</th>");
   print("<th>Beskrivelse</th>");
   print("<th></th>");
   print("</tr>");
@@ -77,7 +75,7 @@ elseif ($tabell == "bilde") {
 	print("</table>");
 	print("</div>");
 	print("<div class='form-group'>");
-	print("<input type='submit' class='btn btn-info' value='Fortsett' id='fortsettKlasse' name='fortsettKlasse'/>");
+	print("<input type='submit' class='btn btn-info' value='Fortsett' id='fortsettBilde' name='fortsettBilde'/>");
 	print("</div>");
 	print("</fieldset>");
 	print("</form>");
@@ -106,6 +104,7 @@ if ($fortsettKlasse) {
 		$klassekode=$rad["klassekode"];
 		$klassenavn=$rad["klassenavn"];
 
+		print("<script>$('option[value=klasse]').prop('selected', true);</script>");
 		print("<form class='form' role='form' method='post' action='' id='endreSteg3' name='endreSteg3' onSubmit='return bekreft()'>");
 		print("<fieldset>");
 		print("<legend>Endre klassedata for</legend>");
@@ -243,6 +242,93 @@ if ($fortsett4){
                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                <span aria-hidden='true'>&times;</span></button><strong>Suksess! :)</strong><br><br><p>Data er endre på student med brukernavn <strong>$brukernavn</strong></p></div>");
 		mysqli_close($db);
+	}
+
+
+}
+
+@$fortsettBilde=$_POST["fortsettBilde"];
+if ($fortsettBilde) {
+
+	$bildenr=$_POST["velgBildeRadio"];
+
+	$sqlSetning="SELECT * FROM bilde WHERE bildenr='$bildenr'";
+	$sqlResultat=mysqli_query($db, $sqlSetning) or die ("Ikke mulig å hente fra $database: " .mysqli_error() );
+	$antallRader=mysqli_num_rows($sqlResultat);
+
+	if ($antallRader==0) {
+		print("<div class='alert alert-warning'><strong>Feil!</strong>Bildenr er ikke registrert i tabell</div>");
+	}
+
+	else {
+
+		$rad=mysqli_fetch_array($sqlResultat);
+
+        $bildenr=$rad["bildenr"];
+        $opplastingsdato=$rad["opplastingsdato"];
+        $filnavn=$rad["filnavn"];
+        $beskrivelse=$rad["beskrivelse"];
+
+		print("<form class='form' role='form' method='post' action='' id='endreSteg5' name='endreSteg5' onSubmit='return bekreft()'>");
+		print("<fieldset>");
+		print("<legend>Endre bilde: $bildenr</legend>");
+
+		print("<div class='form-group'>");
+		print("<img style='height: 60px;' src='./bilder/$filnavn' alt='Studentbilde-$filnavn'>");
+		print("</div>");
+
+		print("<div class='form-group'>");
+		print("<label for='bildenr'>Bildenr:<span class='notbold'><i> (kan ikke endres)</i> </span> </label>");
+		print("<input type='search' class='form-control' id='bildenr' name='bildenr' value='$bildenr' readonly />");
+		print("</div>");
+
+		print("<div class='form-group'>");
+		print("<label for='opplastingsdato'>Opplastingsdato: <span class='notbold'><i> (kan ikke endres)</i> </span>  </label>");
+		print("<input type='search' class='form-control' id='opplastingsdato' name='opplastingsdato' value='$opplastingsdato' readonly />");
+		print("</div>");
+
+		print("<div class='form-group'>");
+		print("<label for='filnavn'>Filnavn: <span class='notbold'><i> (kan ikke endres)</i> </span> </label>");
+		print("<input type='search' class='form-control' id='filnavn' name='filnavn' value='$filnavn' readonly />");
+		print("</div>");
+
+		print("<div class='form-group'>");
+		print("<label for='beskrivelse'>Beskrivelse:</label>");
+		print("<input type='text' class='form-control' id='beskrivelse' name='beskrivelse' value='$beskrivelse' onfocus='fokus(this)' onblur='mistetFokus(this)' onmouseover='musOverRS(this)' onmouseout='musUt(this)'  required/>");
+		print("</div>");
+
+		print("<div class='form-group'>");
+		print("<input type='submit' class='btn btn-info' value='Endre' id='fortsett5' name='fortsett5'/>");
+		print("<input type='button' class='btn btn-info endreKlasseSubmit' value='Nullstill' id='nullstill' name='nullstill' onclick='clearForm(this.form)'/>");
+		print("</div>");
+
+		print("</fieldset>");
+		print("</form>");
+	}
+
+}
+@$fortsett5=$_POST["fortsett5"];
+
+if ($fortsett5){
+
+
+        $bildenr=$_POST["bildenr"];
+        $beskrivelse=$_POST["beskrivelse"];
+
+	if (!$bildenr || !$beskrivelse) {
+
+		print("<div class='alert alert-warning'><strong>Felt må fylles ut!</strong></div>");
+	}
+
+	else {
+
+		$sqlSetning="UPDATE bilde SET beskrivelse='$beskrivelse' WHERE bildenr='$bildenr';";
+		mysqli_query($db, $sqlSetning) or die ("Ikke mulig å endre i $database: " .mysqli_error() );
+
+		print("<div class='alert alert-success alert-dismissible fade in flyttAlert' role='alert'>
+               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+               <span aria-hidden='true'>&times;</span></button><strong>Suksess! :)</strong><br><br><p>Beskrivelse av bilde med bildenr $bildenr er endret til <strong>$beskrivelse </strong> </p></div>");
+		
 	}
 
 

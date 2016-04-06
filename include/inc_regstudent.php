@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 
 
 if ($fortsett) {
-if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode || !$frist) {
+if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode || !$frist ||!$bildenr ) {
 	print("Feltene er ikke fyllt ut.<br>");
 }
 
@@ -25,6 +25,19 @@ else {
                 print("Klassekoden er ikke korrekt fyllt ut");
                     }
 
+            else  {
+                include("./include/db-tilkobling.php");
+                $sqlSetning="SELECT * FROM student WHERE bildenr=$bildenr";
+                $sqlResultat=mysqli_query($db,$sqlSetning);
+                $antallRader=mysqli_num_rows($sqlResultat);
+
+                if ($antallRader!=0) {
+                    print("Bilde er registrert på student fra før");
+                }
+
+                
+            
+            
             else { 
                 include("./include/db-tilkobling.php");
                 $sqlSetning="INSERT INTO student VALUES('$brukernavn','$fornavn', '$etternavn', '$klassekode', '$frist', '$bildenr');";
@@ -46,6 +59,7 @@ else {
                     
 
     }
+}
 }
 
 }
