@@ -30,6 +30,24 @@ function musOverRS(element) {
 		if (element == document.getElementById('klassekode')){
 		document.getElementById("melding").innerHTML="<div class='alert alert-warning'>Kun STORE BOKSTAVER og siste tegn ett siffer.</div>";
 	}
+	if (element == document.getElementById('frist')){
+		document.getElementById("melding").innerHTML="<div class='alert alert-warning'>Innleveringsfrist må fylles ut.</div>";
+	}
+}
+
+function musOverRB(element) {
+	document.getElementById("melding").style.color="black";
+	if (element == document.getElementById('beskrivelse')){
+		document.getElementById("melding").innerHTML="<div class='alert alert-warning'>Beskrivelse må fylles ut. Maks 150 tegn.</div>";
+	}
+}
+
+function musOverEB(element) {
+	document.getElementById("melding").style.color="black";
+	if (element == document.getElementById('beskrivelse')){
+		document.getElementById("melding").innerHTML="<div class='alert alert-warning'>Beskrivelse må fylles ut. Maks 150 tegn.</div>";
+	}
+
 }
 
 function musOverKL(element) {

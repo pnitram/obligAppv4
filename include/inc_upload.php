@@ -13,7 +13,12 @@ $filstorrelse=$_FILES["fil"]["size"];
 $tmpnavn=$_FILES["fil"]["tmp_name"];
 $uploadDate=date("d-m-Y");
 
-if (/*!$bildenr || */!$beskrivelse || !$filnavn) {
+include ("./include/db-tilkobling.php");
+$sqlSetning="SELECT * FROM bilde WHERE filnavn='$filnavn';";
+$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente fra db");
+$antallRader=mysqli_num_rows($sqlResultat);
+
+if (!$beskrivelse || !$filnavn) {
 	print("Alle felt på fylles ut");
 }
 else {
@@ -25,27 +30,16 @@ else {
 		print("Filstørrelsen må være under 10 MB");
 	}
 
-	/*else {
-		include ("./include/db-tilkobling.php");
+	elseif ($antallRader !=0) {
 
-		$sqlSetning="SELECT * FROM bilde WHERE bildenr='$bildenr';";
-		$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente fra db");
-		$antallRader=mysqli_num_rows($sqlResultat);
-
-		if ($antallRader !=0) {
-			print("Finnes fra før");
-		}
-
-		else {
-			$nyttnavn="/var/www/html/MySchoolProjects/obligAppv4/bilder/" .$filnavn;
-			move_uploaded_file($tmpnavn, $nyttnavn) or die("kunne ikke opprette bilde");
-
-			$sqlSetning="INSERT INTO bilde (bildenr,opplastingsdato,filnavn,beskrivelse) VALUES ('$bildenr', '$uploadDate', '$filnavn', '$beskrivelse');";
-			mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere i db");
-			print("bilde er nå registrert");
+			
+			print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>På grunn av en feil var det ikke mulig å laste opp bilde.<br><br><strong>Bilde/filnavnet finnes fra før.</strong></div>");
 
 		}
-	}*/
+	
+
 
 	else {
 		include ("./include/db-tilkobling.php");
@@ -55,11 +49,21 @@ else {
 			$sqlSetning="INSERT INTO bilde (opplastingsdato,filnavn,beskrivelse) VALUES ('$uploadDate', '$filnavn', '$beskrivelse');";
 			if (mysqli_query($db,$sqlSetning)) {
 				$siste_bilde_nr = mysqli_insert_id($db);
-				print ("Siste registrerte bildenr er: ");
-				printf("%03s\n", $siste_bilde_nr);
+				$test=sprintf("%03s\n", $siste_bilde_nr);
+				
+	
+				print("<div class='alert alert-success alert-dismissible fade in' role='alert'>
+					<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+					<span aria-hidden='true'>&times;</span></button>
+					<strong>Suksess! :)</strong><br> Bilde ble lastet opp med bildenr: <strong>" . $test . "</strong></div>");
+
 			}
 			else {
-				print("Error: " . $sqlSetning . "<br>" . mysqli_error($db));
+
+
+                    print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>På grunn av en feil var det ikke mulig å laste opp bilde til $database</div>");
 			}
 	}
 

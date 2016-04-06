@@ -66,7 +66,7 @@
     <label for="bildenr">Bildenr:</label>
     <select name='bildenr' class="form-control" id='bildenr'>
     <?php include("./include/listeboks-bilde-reg.php"); ?></select>
-    <small>For å registrere ny student må du først laste opp et bilde <a href="./last-opp-bilde.php">her</a>.
+    <small>For å registrere ny student må du først laste opp et bilde <a href="./last-opp-bilde.php">her</a>.</small>
 </div>
 
 <div class="form-group">

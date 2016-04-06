@@ -18,5 +18,8 @@ include("./include/db-tilkobling.php");
 
     print("<option value='$bildenr' name='velgBildenr'>$bildenr - $filnavn</option> <br>");
 
+
   	}
+    print("<script>$('select option:contains($bildenrPreSelected)').prop('selected',true);</script>");
+
 ?>

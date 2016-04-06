@@ -178,13 +178,15 @@ if ($fortsettStudent) {
 		$fornavn=$rad["fornavn"];
 		$etternavn=$rad["etternavn"];
 		$klassekode=$rad["klassekode"];
+		$bildenr=$rad["bildenr"];
 		$klassekodePreSelected=$klassekode;
+		$bildenrPreSelected=$bildenr;
 
 		print("<script>$('option[value=student]').prop('selected', true);</script>");
 		print("<form class='form' role='form' method='post' action='' id='endreSteg4' name='endreSteg4' onSubmit='return bekreft()'/>");
 		print("<fieldset>");
 		print("<legend>Endre studentdata for</legend>");
-		print("<small><p><b>Brukernavn: </b>$brukernavn<br><b>Navn:</b> $fornavn $etternavn <br><b>Klassekode:</b> $klassekode </p></small>");
+		print("<small><p><b>Brukernavn: </b>$brukernavn<br><b>Navn:</b> $fornavn $etternavn <br><b>Klassekode:</b> $klassekode<br><b>Bildenr:</b> $bildenr </p></small>");
 		print("<hr>");
 
 		print("<div class='form-group'>");
@@ -209,6 +211,14 @@ if ($fortsettStudent) {
 		print("</select>");
 		print("</div>");
 
+		print("<div class='form-group'>");
+    	print("<label for='bildenr'>Bildenr:</label>");
+    	print("<select name='bildenr' class='form-control' id='bildenr'>");
+    	include("./include/listeboks-bilde-reg.php");
+    	print("</select>");
+		print("</div>");
+
+
 		print("<div class='form-group'>");	
 		print("<input type='submit' class='btn btn-info' value='Endre' id='fortsett4' name='fortsett4'/>");
 		print("<input type='button' class='btn btn-info endreKlasseSubmit' value='Nullstill' id='nullstill' name='nullstill' onclick='clearForm(this.form)' />");
@@ -228,15 +238,16 @@ if ($fortsett4){
 	$fornavn=$_POST["fornavn"];
 	$etternavn=$_POST["etternavn"];
 	$klassekode=$_POST["klassekode"];
+	$bildenr=$_POST["bildenr"];
 
-	if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode) {
+	if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode || !$bildenr) {
 
 		print("<div class='alert alert-warning'><strong>Alle felt må fylles ut!</strong></div>");
 	}
 
 	else {
 
-		$sqlSetning="UPDATE student SET fornavn='$fornavn', etternavn='$etternavn', klassekode='$klassekode' WHERE brukernavn='$brukernavn';";
+		$sqlSetning="UPDATE student SET fornavn='$fornavn', etternavn='$etternavn', klassekode='$klassekode', bildenr='$bildenr' WHERE brukernavn='$brukernavn';";
 		mysqli_query($db, $sqlSetning) or die ("Ikke mulig å endre i $database: " .mysqli_error() );
 		print("<div class='alert alert-success alert-dismissible fade in flyttAlert' role='alert'>
                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -294,7 +305,7 @@ if ($fortsettBilde) {
 
 		print("<div class='form-group'>");
 		print("<label for='beskrivelse'>Beskrivelse:</label>");
-		print("<input type='text' class='form-control' id='beskrivelse' name='beskrivelse' value='$beskrivelse' onfocus='fokus(this)' onblur='mistetFokus(this)' onmouseover='musOverRS(this)' onmouseout='musUt(this)'  required/>");
+		print("<input type='text' class='form-control' id='beskrivelse' name='beskrivelse' value='$beskrivelse' onfocus='fokus(this)' onblur='mistetFokus(this)' onmouseover='musOverEB(this)' onmouseout='musUt(this)' required />");
 		print("</div>");
 
 		print("<div class='form-group'>");

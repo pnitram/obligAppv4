@@ -30,8 +30,8 @@
                 <fieldset>
                     <legend>Last opp bilde</legend>
                     <div class="form-group">
-                        <label class="control-label" for="upload">Bilde:</label>
-                        <input type="file" class="form-control file file-loading" id="fil" name="fil" data-allowed-file-extensions='["png", "jpg", "gif"]'/>
+                        <label class="control-label" id="filOpp" for="upload" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRB(this)" onmouseout="musUt(this)" >Bilde:</label>
+                        <input type="file" class="form-control file file-loading" id="fil" name="fil" data-allowed-file-extensions='["png", "jpg", "gif"]' required />
                     </div>
 
                     <script>
@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         <label for="beskrivelse">Beskrivelse:</label>
-                        <input type="text" class="form-control" id="beskrivelse" name="beskrivelse" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRK(this)" onmouseout="musUt(this)" required/>
+                        <input type="text" class="form-control" id="beskrivelse" name="beskrivelse" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRB(this)" onmouseout="musUt(this)" required/>
                     </div>
 
                     <div class="form-group">
