@@ -5,7 +5,6 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 @$fortsett=$_POST["fortsett"];
 
 if ($fortsett) {
-/*$bildenr=$_POST["bildenr"];*/
 $beskrivelse=$_POST["beskrivelse"];
 $filnavn=$_FILES["fil"]["name"];
 $filtype=$_FILES["fil"]["type"];
@@ -19,15 +18,24 @@ $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente fra db")
 $antallRader=mysqli_num_rows($sqlResultat);
 
 if (!$beskrivelse || !$filnavn) {
-	print("Alle felt på fylles ut");
+	print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>Alle felt må fylles ut.</div>");
+
+
 }
 else {
 	if ($filtype != "image/gif" && $filtype != "image/jpeg" && $filtype != "image/png") {
-		print("Kun tilatt å laste opp bilder");
+		print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>Kun tilatt å laste opp bilder av type: jpg, png eller gif.</div>");
+
 	}
 
 	elseif ($filstorrelse > 10000000) {
-		print("Filstørrelsen må være under 10 MB");
+		print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>Filstørrelsen må være på under 10 MB</div>");
 	}
 
 	elseif ($antallRader !=0) {
@@ -59,8 +67,6 @@ else {
 
 			}
 			else {
-
-
                     print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button><strong>Beklager! </strong>På grunn av en feil var det ikke mulig å laste opp bilde til $database</div>");

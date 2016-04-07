@@ -13,7 +13,9 @@ error_reporting(E_ALL);
 
 if ($fortsett) {
 if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode || !$frist ||!$bildenr ) {
-	print("Feltene er ikke fyllt ut.<br>");
+    print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong><br>Alle felt må fylles ut. </div>");
 }
 
 else {
@@ -22,7 +24,10 @@ else {
         $lovligKlassekode=validerklassekode($klassekode);
 
             if (!$lovligKlassekode) {
-                print("Klassekoden er ikke korrekt fyllt ut");
+                
+                print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong><br>Klassekoden er ikke korrekt fyllt ut. </div>");
                     }
 
             else  {
@@ -32,7 +37,10 @@ else {
                 $antallRader=mysqli_num_rows($sqlResultat);
 
                 if ($antallRader!=0) {
-                    print("Bilde er registrert på student fra før");
+                    
+                    print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>På grunn av en feil var det ikke mulig å registrere.<br>Bilde er registrert på student fra før. </div>");
                 }
 
                 
@@ -41,7 +49,7 @@ else {
             else { 
                 include("./include/db-tilkobling.php");
                 $sqlSetning="INSERT INTO student VALUES('$brukernavn','$fornavn', '$etternavn', '$klassekode', '$frist', '$bildenr');";
-                print("$sqlSetning");
+                
 
                 if (!mysqli_query($db,$sqlSetning)) {
 

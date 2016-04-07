@@ -27,9 +27,9 @@
 <div class="form-group">
 <label for="VelgTabell">Velg tabell:</label>
 <select class="form-control" id="VelgTabell" name="VelgTabell" required/>
-<option value="klasse">Klasse</option>
-<option value="student">Student</option>
-<option value="bilde">Bilder</option>
+<option value="bilde">bilde</option>
+<option value="klasse">klasse</option>
+<option value="student">student</option>
 </select>
 </div>
 <div class="form-group">

@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         <label for="beskrivelse">Beskrivelse:</label>
-                        <input type="text" class="form-control" id="beskrivelse" name="beskrivelse" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRB(this)" onmouseout="musUt(this)" required/>
+                        <input type="text" class="form-control" id="beskrivelse" name="beskrivelse" maxlength="150" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRB(this)" onmouseout="musUt(this)" required/>
                     </div>
 
                     <div class="form-group">

@@ -240,11 +240,26 @@ if ($fortsett4){
 	$klassekode=$_POST["klassekode"];
 	$bildenr=$_POST["bildenr"];
 
+		include ("./include/db-tilkobling.php");
+
+		$sqlSetning="SELECT * FROM student WHERE bildenr='$bildenr';";
+		$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente fra db");
+		$antallRader=mysqli_num_rows($sqlResultat);
+
 	if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode || !$bildenr) {
 
 		print("<div class='alert alert-warning'><strong>Alle felt må fylles ut!</strong></div>");
 	}
 
+	elseif ($antallRader !=0) {
+
+		
+			print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button><strong>Beklager! </strong>Bilde er allerede registrert på en student. Velg et annet.</div>");
+		
+
+	}
 	else {
 
 		$sqlSetning="UPDATE student SET fornavn='$fornavn', etternavn='$etternavn', klassekode='$klassekode', bildenr='$bildenr' WHERE brukernavn='$brukernavn';";
@@ -305,7 +320,7 @@ if ($fortsettBilde) {
 
 		print("<div class='form-group'>");
 		print("<label for='beskrivelse'>Beskrivelse:</label>");
-		print("<input type='text' class='form-control' id='beskrivelse' name='beskrivelse' value='$beskrivelse' onfocus='fokus(this)' onblur='mistetFokus(this)' onmouseover='musOverEB(this)' onmouseout='musUt(this)' required />");
+		print("<input type='text' class='form-control' id='beskrivelse' name='beskrivelse' value='$beskrivelse' maxlength='150' onfocus='fokus(this)' onblur='mistetFokus(this)' onmouseover='musOverEB(this)' onmouseout='musUt(this)' required />");
 		print("</div>");
 
 		print("<div class='form-group'>");

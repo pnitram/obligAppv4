@@ -12,9 +12,7 @@ $antallRader=mysqli_num_rows($sqlResultat);
 
 // SPØRRING 2 FOR Å FÅ FILNAVN
 
-$sqlSetning2="SELECT * FROM bilde;";
-$sqlResultat2=mysqli_query($db,$sqlSetning2) or die ("Ikke mulig å hente fra $database: " .@mysqli_error() );
-$antallRader2=mysqli_num_rows($sqlResultat2);
+
 
 
 if ($tabell == "klasse") {
@@ -43,6 +41,7 @@ if ($tabell == "klasse") {
 print("</tbody>");
 print("</table>");
 print("</div>");
+print("<script>$('option[value=klasse]').prop('selected', true);</script>");
 mysqli_close($db);
 }
 
@@ -63,6 +62,8 @@ elseif ($tabell=="student") {
 	print("</thead>");
 	print("<tbody>");
 
+
+
 		for ($r=1;$r<=$antallRader;$r++) {
 
 	$rad=mysqli_fetch_array($sqlResultat);
@@ -73,14 +74,17 @@ elseif ($tabell=="student") {
 	$frist=$rad["frist"];
 	$bildenr=$rad["bildenr"];
 
-	$rad2=mysqli_fetch_array($sqlResultat2);
-	$filnavn=$rad2["filnavn"];
+	$sqlSetning2="SELECT filnavn FROM bilde WHERE bildenr='$bildenr' ;";
+$sqlResultat2=mysqli_query($db,$sqlSetning2) or die ("Ikke mulig å hente fra $database: " .@mysqli_error() );
+$antallRader2=mysqli_num_rows($sqlResultat2);
 
+	$rad2=mysqli_fetch_array($sqlResultat2);
+	$filnavn2=$rad2["filnavn"];
 
 
 
 	
-	print("<tr><td>$brukernavn</td> <td>$fornavn</td> <td>$etternavn</td> <td>$klassekode</td><td>$frist</td><td>$bildenr</td><td><img style='height: 60px;' src='./bilder/$filnavn' alt='Studentbilde-$filnavn'></td></tr>");
+	print("<tr><td>$brukernavn</td> <td>$fornavn</td> <td>$etternavn</td> <td>$klassekode</td><td>$frist</td><td>$bildenr</td><td><img style='height: 60px;' src='./bilder/$filnavn2' alt='Studentbilde-$filnavn2'></td></tr>");
 	
 
 }
@@ -93,7 +97,6 @@ mysqli_close($db);
 }
 
 elseif ($tabell=="bilde") {
-	print("<script>$('option[value=bilde]').prop('selected', true);</script>");
 	include "./include/inc_vis-bilder.php";
 	/*print("<meta http-equiv='refresh' content='0; url=./vis-bilder.php'>");*/
 }
