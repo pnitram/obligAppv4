@@ -5,7 +5,7 @@ session_start();
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 
 if (!$innloggetBruker) {
-    print('Du må logge inn.');
+    print(' ');
 }
 
 else {
