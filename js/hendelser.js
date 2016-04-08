@@ -57,6 +57,16 @@ function musOverKL(element) {
 	}
 }
 
+function musOverLR(element) {
+	document.getElementById("melding").style.color="black";
+	if (element == document.getElementById('brukernavn2')){
+		document.getElementById("melding").innerHTML="<div class='alert alert-warning'>Må fylles ut.</div>";
+	}
+		if (element == document.getElementById('passord2')){
+		document.getElementById("melding").innerHTML="<div class='alert alert-warning'>Må fylles ut.</div>";
+	}
+}
+
 function musUt(element){
 	document.getElementById("melding").innerHTML="";
 }

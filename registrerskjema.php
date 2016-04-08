@@ -26,11 +26,13 @@
 
 
   <?php include "./include/noscriptregistrer.php"; ?>
+  <!-- JAVASCRIPT MELDINGER -->
+<div id="melding"></div>
+
 
   </div>
 
   
-
 
 		</div>
 	</div>

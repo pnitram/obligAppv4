@@ -2,7 +2,7 @@
 
 include("../include/sjekk.php");
 
-$brukernavn=$_POST["brukernavn"];
+$brukernavn=strtolower($_POST["brukernavn"]);
 $passord=$_POST["passord"];
 
 if (!sjekkBrukernavnPassord($brukernavn,$passord)) {

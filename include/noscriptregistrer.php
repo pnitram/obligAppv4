@@ -3,11 +3,11 @@
                     <legend>Opprett bruker</legend>
                     <div class="form-group">
                         <label for="brukernavn">Brukernavn:</label>
-                        <input type="text" class="form-control" id="brukernavn" name="brukernavn" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRK(this)" onmouseout="musUt(this)" required/>
+                        <input type="text" class="form-control" id="brukernavn2" name="brukernavn" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverLR(this)" onmouseout="musUt(this)" required/>
                     </div>
                     <div class="form-group">
                         <label for="passord">Passord:</label>
-                        <input type="password" class="form-control" id="passord" name="passord" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRK(this)" onmouseout="musUt(this)" required/>
+                        <input type="password" class="form-control" id="passord2" name="passord" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverLR(this)" onmouseout="musUt(this)" required/>
                     </div>
                     <div class="form-group">
                       <input type="submit" class="btn btn-info" value="Registrer" id="fortsett" name="fortsettKnapp"/>
@@ -25,7 +25,7 @@ if ($fortsett) {
 
 include("./include/db-tilkobling.php");
 
-$brukernavn=$_POST["brukernavn"];
+$brukernavn=strtolower($_POST["brukernavn"]);
 $passord=$_POST["passord"];
 
 if (!$brukernavn || !$passord) {

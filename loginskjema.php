@@ -27,12 +27,16 @@
 
   <?php include "./include/noscriptlogin.php"; ?>
 
+  		<!-- JAVASCRIPT MELDINGER -->
+<div id="melding"></div>
+
+
   </div>
 
   
 
-
 		</div>
+
 	</div>
 
 </main>
