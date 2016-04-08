@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 
@@ -166,7 +166,8 @@ if ($fortsettBilde) {
 		}
 	else {
 		
-		$filmappenavn="/var/www/html/MySchoolProjects/obligAppv4/bilder/" .$filnavn;
+		/*$filmappenavn="/var/www/html/MySchoolProjects/obligAppv4/bilder/" .$filnavn;*/
+		$filmappenavn="D:\\Sites\\home.hbv.no\\phptemp\\882555\\bilder\\" .$filnavn;
 		unlink("$filmappenavn") or die ("Filen er alerede slettet. Sletter eventuell data fra tabell.");
 
 	print("<div class='alert alert-success alert-dismissible fade in flyttAlert' role='alert'>

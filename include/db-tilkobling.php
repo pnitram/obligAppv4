@@ -1,5 +1,11 @@
 <?php
 
+/*
+$host="localhost";
+$user="882555";
+$password="74780"; //mysqlpassord
+$database="882555"; 
+*/
 
 $host="localhost";
 $user="oblig4";

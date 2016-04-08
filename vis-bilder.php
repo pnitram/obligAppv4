@@ -24,7 +24,7 @@
 <div class="col-md-9">
 				            <?php
 
-            session_start();
+            @session_start();
 
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 

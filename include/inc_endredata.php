@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 
@@ -325,6 +325,7 @@ if ($fortsettBilde) {
 
 		print("<div class='form-group'>");
 		print("<img style='height: 60px;' src='./bilder/$filnavn' alt='Studentbilde-$filnavn'>");
+		/*print("<img style='height: 60px;' src='https://home.hbv.no/phptemp/882555/bilder/$filnavn' alt='Studentbilde-$filnavn'>");*/
 		print("</div>");
 
 		print("<div class='form-group'>");

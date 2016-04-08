@@ -25,7 +25,7 @@
 
 		            <?php
 
-            session_start();
+            @session_start();
 
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 

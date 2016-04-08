@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 
@@ -60,8 +60,13 @@ else {
 
 	else {
 		include ("./include/db-tilkobling.php");
+			
+
 			$nyttnavn="/var/www/html/MySchoolProjects/obligAppv4/bilder/" .$filnavn;
+			/*$nyttnavn="D:\\Sites\\home.hbv.no\\phptemp\\882555\\bilder\\" .$filnavn;*/
 			move_uploaded_file($tmpnavn, $nyttnavn) or die("kunne ikke opprette bilde");
+
+
 
 			$sqlSetning="INSERT INTO bilde (opplastingsdato,filnavn,beskrivelse) VALUES ('$uploadDate', '$filnavn', '$beskrivelse');";
 			if (mysqli_query($db,$sqlSetning)) {

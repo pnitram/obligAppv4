@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 
 @$innloggetBruker=$_SESSION["tuxbrukernavn"];
 
@@ -44,6 +44,9 @@ $antallRader=mysqli_num_rows($sqlResultat);
 
 	
 	print("<tr><td>$bildenr</td><td>$opplastingsdato</td><td>$filnavn</td> <td>$beskrivelse</td><td><img style='height: 60px;' src='./bilder/$filnavn' alt='Studentbilde-$filnavn'></td></tr>");
+
+	/*print("<tr><td>$bildenr</td><td>$opplastingsdato</td><td>$filnavn</td> <td>$beskrivelse</td><td><img style='height: 60px;' src='https://home.hbv.no/phptemp/882555/bilder/$filnavn' alt='Studentbilde-$filnavn'></td></tr>");*/
+
 
 }
 print("</tbody>");
