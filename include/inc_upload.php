@@ -1,6 +1,15 @@
 <?php
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
 
 @$fortsett=$_POST["fortsett"];
 
@@ -72,6 +81,8 @@ else {
                         </button><strong>Beklager! </strong>På grunn av en feil var det ikke mulig å laste opp bilde til $database</div>");
 			}
 	}
+
+}
 
 }
 

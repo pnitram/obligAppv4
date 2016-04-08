@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
 @$fortsett=$_POST["fortsett"];
 
 
@@ -246,12 +256,26 @@ if ($fortsett4){
 		$sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente fra db");
 		$antallRader=mysqli_num_rows($sqlResultat);
 
+		$sqlSetning3="SELECT * FROM student WHERE brukernavn='$brukernavn' AND bildenr='$bildenr';";
+		$sqlResultat3=mysqli_query($db,$sqlSetning3) or die ("ikke mulig å hente fra db");
+		$antallRader3=mysqli_num_rows($sqlResultat3);
+
 	if (!$brukernavn || !$fornavn || !$etternavn || !$klassekode || !$bildenr) {
 
 		print("<div class='alert alert-warning'><strong>Alle felt må fylles ut!</strong></div>");
 	}
 
-	elseif ($antallRader !=0) {
+	elseif ($antallRader3 === 1) {
+				$sqlSetning="UPDATE student SET fornavn='$fornavn', etternavn='$etternavn', klassekode='$klassekode', bildenr='$bildenr' WHERE brukernavn='$brukernavn';";
+		mysqli_query($db, $sqlSetning) or die ("Ikke mulig å endre i $database: " .mysqli_error() );
+		print("<div class='alert alert-success alert-dismissible fade in flyttAlert' role='alert'>
+               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+               <span aria-hidden='true'>&times;</span></button><strong>Suksess! :)</strong><br><br><p>Data er endre på student med brukernavn <strong>$brukernavn</strong></p></div>");
+		
+
+	}
+
+	elseif ($antallRader !=0 ) {
 
 		
 			print ("<div class='alert alert-danger alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -360,6 +384,6 @@ if ($fortsett5){
 
 }
 
-
+}
 
 ?>

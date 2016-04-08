@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+  
+
 include("./include/db-tilkobling.php");
 
 
@@ -21,5 +32,5 @@ include("./include/db-tilkobling.php");
 
   	}
     print("<script>$('select option:contains($bildenrPreSelected)').prop('selected',true);</script>");
-
+}
 ?>

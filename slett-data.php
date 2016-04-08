@@ -20,13 +20,31 @@
 
 		<div class="col-md-4">
 
+				            <?php
+
+            session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+    print('
+
 <form method="post" class="form" role="form" action="" id="slett-data" name="slett-data" />
 	<fieldset>
 		<legend>Slett registrert data</legend>
 		<div class="form-group">
 			<label for="velgTabell">Velg tabell:</label>
-			<select class="form-control" name='velgTabell' id='velgTabell'>
-			<?php include("./include/listeboks-tabell.php"); ?>
+			<select class="form-control" name="velgTabell" id="velgTabell">
+			');
+
+			include("./include/listeboks-tabell.php");
+
+			print('
 			</select>
 			</div>
 		<div class="form-group">	
@@ -36,6 +54,10 @@
 		</fieldset>
 </form>
 </div>
+
+');
+}
+?>
 
 <div class="col-md-5">
 <!-- INKLUDERER PHP SKJEMA OG DB FEILMELDINGER  -->

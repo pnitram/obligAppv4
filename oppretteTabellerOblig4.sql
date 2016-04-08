@@ -24,3 +24,9 @@ CONSTRAINT pk_student PRIMARY KEY (brukernavn),
 CONSTRAINT fk_bildenr FOREIGN KEY (bildenr) REFERENCES bilde (bildenr),
 CONSTRAINT fk_klassekode FOREIGN KEY (klassekode) REFERENCES klasse (klassekode)
 );
+
+CREATE TABLE bruker (
+brukernavn VARCHAR(20) NOT NULL,
+passord CHAR(32) NOT NULL,
+CONSTRAINT pk_bruker PRIMARY KEY (brukernavn)
+);

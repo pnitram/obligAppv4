@@ -22,26 +22,50 @@
 		<?php include "./include/meny.php"; ?>
 
 		<div class="col-md-4">
+
+		            <?php
+
+            session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+    print('
 			<form class="form" role="form" method="post" action="" id="endre-data" name="endre-data" onSubmit="return bekreft()">
 			<fieldset>
 			<legend>Endre registrert data</legend>
 
 				<div class="form-group">
 					<label for="velgTabell">Velg tabell:</label>
-					<select class="form-control" name='velgTabell' id='velgTabell'>
-					<?php include("./include/listeboks-tabell.php"); ?> <br>
+					<select class="form-control" name="velgTabell" id="velgTabell">');
+					include("./include/listeboks-tabell.php");
+
+					print('
+
+					<br>
 
 					</select>
 				</div>
 
 		<div class="form-group">
 			<input type="submit" class="btn btn-info" value="Fortsett" id="fortsett" name="fortsett"/>
+			
+
 			<a href="./endre-data.php" class="btn btn-info">Tilbake</a>
 		</div>
 		</fieldset>
 		</form>
 		</div>
 
+		');
+
+}
+?>
 
 <div class="col-md-5">
 <!-- INKLUDERER PHP SKJEMA OG DB FEILMELDINGER  -->

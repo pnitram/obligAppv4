@@ -22,13 +22,28 @@
 <!-- VIS ALLE BILDER -->
 
 <div class="col-md-9">
+				            <?php
+
+            session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+    print('
 
 <!-- INKLUDERER PHP OG DB FEILMELDINGER  -->
 <?php include "./include/inc_vis-bilder.php"; ?>
 
 </div>
 
-
+');
+}
+?>
 <!-- SLUTT PÅ INKLUDERT PHP -->
 
 

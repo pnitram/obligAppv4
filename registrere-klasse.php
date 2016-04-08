@@ -19,7 +19,24 @@
         
         <!-- REGISTRER KLASSE SKJEMA -->
 
-            <div class="col-md-4">
+        <div class="col-md-4">
+
+
+<?php
+
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+    print('
+
+            
                 <form class="form" role="form" method="post" action="" id="reg-klasse" name="reg-klasse" onsubmit="return validerRegistrerKlasse()">
                 <fieldset>
                     <legend>Registrere ny klasse</legend>
@@ -32,8 +49,8 @@
                         <input type="text" class="form-control" id="klassenavn" name="klassenavn" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRK(this)" onmouseout="musUt(this)" required/>
                     </div>
                     <div class="form-group">
-		              <input type="submit" class="btn btn-info" value="Registrer" id="fortsett" name="fortsett"/>
-		              <input type="reset" class="btn btn-info" value="Nullstill" id="nullstill" name="nullstill"/>
+                      <input type="submit" class="btn btn-info" value="Registrer" id="fortsett" name="fortsett"/>
+                      <input type="reset" class="btn btn-info" value="Nullstill" id="nullstill" name="nullstill"/>
                     </div>
                 </fieldset>
                 </form>
@@ -42,8 +59,16 @@
 <!-- INKLUDERER PHP SKJEMA OG DB FEILMELDINGER  -->
 
 
+');
+ include "./include/inc_regklasse.php";
+        
+}
 
- <?php include "./include/inc_regklasse.php"; ?>
+
+?>
+
+
+
 
 <!-- SLUTT PÅ INKLUDERT PHP SKJEMA-->
 

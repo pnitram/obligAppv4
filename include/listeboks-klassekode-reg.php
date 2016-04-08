@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+
 include("./include/db-tilkobling.php");
 
 
@@ -23,6 +34,6 @@ include("./include/db-tilkobling.php");
   	//preselect med jQuery
   	print("<script>$('select option:contains($klassekodePreSelected)').prop('selected',true);</script>");
 
-
+}
 
 ?>

@@ -16,4 +16,14 @@ $(function () {
 	});
 });
 
+$(document).ready(function(){
+    $("#loginKnapp").click(function(){
+        $("#myModal").modal();
+    });
+});
 
+$(document).ready(function(){
+	$('#registrerKnapp').click(function(){
+   		window.location.href='./registrerskjema.php';
+	});
+});

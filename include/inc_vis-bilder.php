@@ -1,5 +1,16 @@
 <?php
-	
+
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+
 include("./include/db-tilkobling.php");
 $tabell="bilde";
 $sqlSetning="SELECT * FROM $tabell;";
@@ -40,6 +51,6 @@ print("</table>");
 print("</div>");
 mysqli_close($db);
 
-
+}
 
 ?>

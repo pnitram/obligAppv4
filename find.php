@@ -21,6 +21,20 @@
 
 		<div class="col-md-4">
 
+		<?php
+
+            session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+    print('
+
 <form method="post" class="form" role="form" action="" id="sokeSkjema" name="sokeSkjema">
 	<fieldset>
 		<legend>S&oslash;k tabellene</legend>
@@ -40,7 +54,9 @@
 </div>
 
 <div>
-
+');
+}
+?>
 <!-- PHP KODE STARTER -->
 <div class="col-md-5">
 

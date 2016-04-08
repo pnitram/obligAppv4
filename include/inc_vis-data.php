@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+
 @$fortsett=$_POST["fortsett"];
 
 if ($fortsett) {
@@ -99,6 +110,7 @@ mysqli_close($db);
 elseif ($tabell=="bilde") {
 	include "./include/inc_vis-bilder.php";
 	/*print("<meta http-equiv='refresh' content='0; url=./vis-bilder.php'>");*/
+}
 }
 }
 

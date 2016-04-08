@@ -24,6 +24,19 @@
 <!-- REGISTRERE STUDENT SKJEMA -->
 <div class="col-md-4">
 
+<?php
+
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    print('
+
 <form role="form" method="post" action="" id="reg-student" name="reg-student" onsubmit="return validerRegistrerStudent()">
 <fieldset>
 <legend>Registrere ny student</legend>
@@ -42,30 +55,32 @@
 </div>
 <div class="form-group">
     <label for="klassekode">Klassekode:</label>
-    <select name='klassekode' class="form-control" id='klassekode'>
-    <?php include("./include/listeboks-klassekode-reg.php"); ?></select>
+    <select name="klassekode" class="form-control" id="klassekode">');
+
+    include("./include/listeboks-klassekode-reg.php");
+
+    (print'
+    </select>
 </div>
 
 <div class="form-group">
     <label for="frist">Neste innleveringsfrist:</label>
-    <div class='input-group date' id='datetimepicker1'>
+    <div class="input-group date" id="datetimepicker1">
     <input type="text" class="form-control" id="frist" name="frist" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRS(this)" onmouseout="musUt(this)" required/>
                         <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                     </div>
 </div>
-<!--
-<div class="form-group">
-    <label for="bildenr">Bildenummer:</label>
-    <input type="text" class="form-control" id="bildenr" name="bildenr" onfocus="fokus(this)" onblur="mistetFokus(this)" onmouseover="musOverRS(this)" onmouseout="musUt(this)" />
-    <small>For å registrere ny student må du først laste opp et bilde <a href="./last-opp-bilde.php">her</a>.
-</div>
--->
+
 <div class="form-group">
     <label for="bildenr">Bildenr:</label>
-    <select name='bildenr' class="form-control" id='bildenr'>
-    <?php include("./include/listeboks-bilde-reg.php"); ?></select>
+    <select name="bildenr" class="form-control" id="bildenr">');
+
+    include("./include/listeboks-bilde-reg.php");
+    
+    print ('
+    </select>
     <small>For å registrere ny student må du først laste opp et bilde <a href="./last-opp-bilde.php">her</a>.</small>
 </div>
 
@@ -75,10 +90,15 @@
  </div>
 </fieldset>
 </form>
-
+');
+    }
+?>
 <!-- PHP SKJEMA STARTER HER -->
  <?php include "./include/inc_regstudent.php"; ?>
 <!-- SLUTT PÅ PHP -->
+
+
+
 
 
 <!-- JAVASCRIPT MELDING  -->

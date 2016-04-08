@@ -22,25 +22,11 @@
 
 		<?php include "./include/meny.php"; ?>
 
-		<div class="col-md-6">
-		<h3>Applikasjon for registrering av studenter og klasser</h3>
-		
-		   <div id="startinfo"><div class="alert alert-info">
-    <strong>Velkommen!</strong><div>Benytt navigasjon for å registrere, slette eller søke i registret over klasser og studenter.</div>
-  </div>
+		<div class="col-md-4">
 
-<?php
 
-if (!$innloggetBruker) {
-	include ("./include/inc_notInfo.php");
-}
+  <?php include "./include/noscriptlogin.php"; ?>
 
-else {
-	print(" ");
-	
-} 
-
-?>
   </div>
 
   

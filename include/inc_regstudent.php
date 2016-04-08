@@ -1,5 +1,16 @@
 <?php
-error_reporting(E_ALL);
+
+
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
 @$fortsett=$_POST["fortsett"];
     
     @$brukernavn=$_POST["brukernavn"];
@@ -70,5 +81,6 @@ else {
 }
 }
 
+}
 }
 ?>

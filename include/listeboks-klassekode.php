@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+
 include("./include/db-tilkobling.php");
 
 
@@ -15,4 +26,5 @@ include("./include/db-tilkobling.php");
   	
 		print("<option value='$klassekode' name='velgKlassekode'>$klassekode - $klassenavn</option> <br>");
   	}
+  }
 ?>

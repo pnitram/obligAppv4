@@ -1,5 +1,16 @@
 <?php
 
+
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+
 include("./include/db-tilkobling.php");
 
 
@@ -19,4 +30,5 @@ include("./include/db-tilkobling.php");
 print("<tr><td><input type='radio' name='velgBildeRadio' value='$bildenr'></td><td>$bildenr</td><td>$beskrivelse</td><td><img style='height: 40px;' src='./bilder/$filnavn' alt='Studentbilde-$filnavn'></td></tr>");
 
   	}
+  }
 ?>

@@ -21,6 +21,21 @@
 
 <!-- VIS DATA REGISTRERT I TABELL -->
 <div class="col-md-4">
+
+            <?php
+
+            session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
+    print('
+
 <form class="form" role="form" method="post" action="" id="les-data" name="les-data">
 <fieldset>
 <legend>Vis registrert data</legend>
@@ -39,12 +54,18 @@
 </fieldset>
 </form>
 </div>
+');
+}
+?>
+
 
 
 <div class="col-md-9 pull-down">
 
 <!-- INKLUDERER PHP SKJEMA OG DB FEILMELDINGER  -->
 <?php include "./include/inc_vis-data.php"; ?>
+
+
 
 </div>
 

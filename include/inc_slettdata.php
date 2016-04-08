@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+
+@$innloggetBruker=$_SESSION["tuxbrukernavn"];
+
+if (!$innloggetBruker) {
+    print('Du må logge inn.');
+}
+
+else {
+    
 @$fortsett=$_POST["fortsett"];
 
 
@@ -167,6 +177,6 @@ if ($fortsettBilde) {
 		
 }
 
-
+}
 
 ?>
