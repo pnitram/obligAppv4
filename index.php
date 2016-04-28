@@ -26,7 +26,7 @@
 		<h3>Applikasjon for registrering av studenter og klasser</h3>
 		
 		   <div id="startinfo"><div class="alert alert-info">
-    <strong>Velkommen!</strong><div>Benytt navigasjon for å registrere, slette eller søke i registret over klasser og studenter.</div>
+    <strong>Velkommen!</strong><div>Benytt navigasjon for å registrere, slette eller søke i registeret over klasser og studenter.</div>
   </div>
 
 <?php

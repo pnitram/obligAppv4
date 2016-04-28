@@ -5,7 +5,8 @@
 	<li><a href="./registrere-klasse.php">Registrere ny klasse</a></li>
 	<li><a href="./registrere-student.php">Registrere ny student</a><ul></ul></li>
 	<li><a href="./last-opp-bilde.php">Last opp bilde</a></li>
-	<li><a href="./vis-data-registrert.php">Vis registrert data</a></li>
+	<li><a href="./vis-data-registrert.php">Vis data fra tabell</a></li>
+	<li><a href="./vis-klasseliste.php">Vis klasseliste</a></li>
 	<li><a href="./endre-data.php">Endre registrert data</a></li>
 	<li><a href="./slett-data.php">Slett registrert data</a></li>
 	<li><a href="./find.php">S&oslash;k</a></li>
